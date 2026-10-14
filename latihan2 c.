@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+
+// Global variable untuk menyimpan input bilangan
+float bil1 = 0.0;
+float bil2 = 0.0;
+
+// Fungsi input menggunakan global variable
+void input_bilangan() {
+    printf("Masukkan bilangan pertama: ");
+    scanf("%f", &bil1);
+    printf("Masukkan bilangan kedua: ");
+    scanf("%f", &bil2);
+}
+
+// Fungsi operasi tanpa parameter (mengakses global variable)
+float tambah() {
+    return bil1 + bil2;
+}
+
+float kurang() {
+    return bil1 - bil2;
+}
+
+float kali() {
+    return bil1 * bil2;
+}
+
+float bagi() {
+    return bil1 / bil2;
+}
+
+int main() {
+    char pilihan[10];
+    float hasil;
+
+    while (1) {
+        printf("\n--- Kalkulator Latihan 2 (C) ---\n");
+        input_bilangan();
+
+        printf("Pilih operasi (+, -, x, /) atau ketik 'keluar' untuk berhenti:\n");
+        printf("Masukkan pilihan: ");
+        scanf("%s", pilihan);
+
+        if (strcmp(pilihan, "keluar") == 0) {
+            printf("Program diakhiri.\n");
+            break;
+        }
+
+        if (strcmp(pilihan, "+") == 0) {
+            hasil = tambah();
+            printf("Hasil: %.2f + %.2f = %.2f\n", bil1, bil2, hasil);
+        } else if (strcmp(pilihan, "-") == 0) {
+            hasil = kurang();
+            printf("Hasil: %.2f - %.2f = %.2f\n", bil1, bil2, hasil);
+        } else if (strcmp(pilihan, "x") == 0 || strcmp(pilihan, "X") == 0) {
+            hasil = kali();
+            printf("Hasil: %.2f x %.2f = %.2f\n", bil1, bil2, hasil);
+        } else if (strcmp(pilihan, "/") == 0) {
+            if (bil2 == 0) {
+                printf("Error: Pembagian dengan nol\n");
+            } else {
+                hasil = bagi();
+                printf("Hasil: %.2f / %.2f = %.2f\n", bil1, bil2, hasil);
+            }
+        } else {
+            printf("Pilihan operasi tidak valid.\n");
+        }
+    }
+
+    return 0;
+}
