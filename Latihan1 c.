@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <string.h>
+
+// Fungsi operasi dengan parameter
+float tambah(float a, float b) {
+    return a + b;
+}
+
+float kurang(float a, float b) {
+    return a - b;
+}
+
+float kali(float a, float b) {
+    return a * b;
+}
+
+float bagi(float a, float b) {
+    return a / b;
+}
+
+int main() {
+    float num1, num2, hasil;
+    char pilihan[10];
+
+    while (1) {
+        printf("\n--- Kalkulator Latihan 1 (C) ---\n");
+        printf("Masukkan bilangan pertama: ");
+        if (scanf("%f", &num1) != 1) {
+            printf("Input harus berupa angka!\n");
+            while(getchar() != '\n'); // membersihkan buffer
+            continue;
+        }
+
+        printf("Masukkan bilangan kedua: ");
+        if (scanf("%f", &num2) != 1) {
+            printf("Input harus berupa angka!\n");
+            while(getchar() != '\n');
+            continue;
+        }
+
+        printf("Pilih operasi (+, -, x, /) atau ketik 'keluar' untuk berhenti:\n");
+        printf("Masukkan pilihan: ");
+        scanf("%s", pilihan);
+
+        if (strcmp(pilihan, "keluar") == 0) {
+            printf("Program diakhiri.\n");
+            break;
+        }
+
+        if (strcmp(pilihan, "+") == 0) {
+            hasil = tambah(num1, num2);
+            printf("Hasil: %.2f + %.2f = %.2f\n", num1, num2, hasil);
+        } else if (strcmp(pilihan, "-") == 0) {
+            hasil = kurang(num1, num2);
+            printf("Hasil: %.2f - %.2f = %.2f\n", num1, num2, hasil);
+        } else if (strcmp(pilihan, "x") == 0 || strcmp(pilihan, "X") == 0) {
+            hasil = kali(num1, num2);
+            printf("Hasil: %.2f x %.2f = %.2f\n", num1, num2, hasil);
+        } else if (strcmp(pilihan, "/") == 0) {
+            if (num2 == 0) {
+                printf("Error: Pembagian dengan nol\n");
+            } else {
+                hasil = bagi(num1, num2);
+                printf("Hasil: %.2f / %.2f = %.2f\n", num1, num2, hasil);
+            }
+        } else {
+            printf("Pilihan operasi tidak valid.\n");
+        }
+    }
+
+    return 0;
+}
